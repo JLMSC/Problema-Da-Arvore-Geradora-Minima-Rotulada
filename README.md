@@ -6,16 +6,16 @@ O problema, em questão, também conhecido como
 com conjunto de **vértices** *V*, conjunto de **arestas** *E*,
 e conjunto de **rótulos** *L*.
 
-Cada **aresta** $e = \{i, j\} \in E$ é associada a um 
+Cada **aresta** $e = \\{ i, j \\} \in E$ é associada a um 
 **custo não-negativo** $c_e$ e a um **rótulo** $l_e \in L$, por fim
 temos $K$, um número inteiro positivo, representando 
 **a quantidade máxima de rótulos distintos**.
 
 Dado as informações necessárias do problema, o mesmo foi modelado,
-com a utilização da ferramenta [**Or-Tools**](#https://developers.google.com/optimization),
+com a utilização da ferramenta [**Or-Tools**](https://developers.google.com/optimization),
 as **restrições necessárias** para, através da aplicação do
-[**SIMPLEX**](#https://pt.wikipedia.org/wiki/Algoritmo_simplex) /
-[**Branch and bound**](#https://en.wikipedia.org/wiki/Branch_and_bound),
+[**SIMPLEX**](https://pt.wikipedia.org/wiki/Algoritmo_simplex) /
+[**Branch and bound**](https://en.wikipedia.org/wiki/Branch_and_bound),
 obter-se uma solução ótima dado uma determinada entrada e, também,
 um determinado $K$.
 
@@ -25,19 +25,27 @@ as quais são definidas a seguir:
 
 **Minimização (Função Objetivo)**
 
-1. $\sum_{(i, j) \in A} c_{ij}a_{ij}$ 
+&ensp; $(1) \sum_{(i, j) \in A} c_{ij}a_{ij}$ 
 
 **Sujeito à (Restrições)**
 
-2. $u_1 = 0$
-3. $\sum_{k \in L} y_k \leq K$
-4. $\sum_{(i,j) \in A} a_{ij} = |V| - 1$
-5. $\sum_{i \in V | (i,j) \in A} a_{ij} = 1, \forall j \in V \ \{1\}$
-6. $u_i - u_j + |V|a_{ij} \leq |V| - 1, \forall (i,j) \in A$
-7. $\sum_{(i,j) \in A | l_{ij} = k} a_{ij} \leq (|V| - 1).y_k, \forall k \in L$
-8. $a_{ij} \in \{0, 1\}, \forall (i,j) \in A$
-9. $y_k \in \{0, 1\}, \forall k \in L$ 
-10. $u_i \geq 0, \forall i \in V$
+&ensp; $(2) u_1 = 0$
+
+&ensp; $(3) \sum_{k \in L} y_k \leq K$
+
+&ensp; $(4) \sum_{(i,j) \in A} a_{ij} = |V| - 1$
+
+&ensp; $(5) \sum_{i \in V | (i,j) \in A} a_{ij} = 1, \forall j \in V \ \{1\}$
+
+&ensp; $(6) u_i - u_j + |V|a_{ij} \leq |V| - 1, \forall (i,j) \in A$
+
+&ensp; $(7) \sum_{(i,j) \in A | l_{ij} = k} a_{ij} \leq (|V| - 1).y_k, \forall k \in L$
+
+&ensp; $(8) a_{ij} \in \{0, 1\}, \forall (i,j) \in A$
+
+&ensp; $(9) y_k \in \{0, 1\}, \forall k \in L$ 
+
+&ensp; $(10) u_i \geq 0, \forall i \in V$ 
 
 > **Observação**: 
 > Por padrão, neste modelo, o vértice **tomado como
